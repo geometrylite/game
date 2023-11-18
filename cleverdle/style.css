@@ -1,0 +1,648 @@
+/*Here's the CSS for my 64dle game, both for index.html and game.html*/
+
+/* Assuming specificity is exactly the same, order does matter. Styles declared later win.*/
+
+.miss {
+    background-color: gray
+}
+
+.near {
+    background: linear-gradient(to right bottom, yellow, gray)
+    /*rgb(252,247,135)*/
+}
+
+.hit {
+    background-color: green !important
+}
+
+.current {
+    background-color: #6495ED
+}
+
+.altColor .near {
+    background: linear-gradient(to right bottom, blue, gray)
+}
+
+.altColor .hit {
+    background-color: orange !important
+}
+
+.altColor .current {
+    background-color: #99895f
+}
+
+body {
+    color: #000000;
+    background-color: #ffffff;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.dark {
+    background-color: #15202b;
+    color: #d3d3d3
+}
+
+.row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.column {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    break-inside: avoid-column;
+    page-break-inside: avoid;
+    overflow: hidden;
+}
+
+.dark a {
+    background-color: #15202b;
+    color: #d3d3d3
+}
+
+a.button {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    text-decoration: none;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1vw;
+    background-color: #adadad;
+    color: #3d4849;
+    border: 0.5vw solid #222222;
+    border-radius: 25%;
+    cursor: pointer;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    font-size: 3vw;
+    font-weight: 600;
+    /* just make the text bold? */
+    outline: none;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    touch-action: manipulation;
+    transition: box-shadow .2s, -ms-transform .1s, -webkit-transform .1s, transform .1s;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+/*
+a.button:focus-visible {
+  box-shadow: #222222 0 0 0 2vw, rgba(255, 255, 255, 0.8) 0 0 0 4vw;
+  transition: box-shadow .2s;
+}
+
+a.button:active {
+  
+ background-color: #F7F7F7;
+  border-color: #000000; 
+  transform: scale(.96);
+}
+
+a.button:disabled {
+   border-color: #DDDDDD;
+    color: #DDDDDD; 
+  cursor: not-allowed;
+  opacity: 1;
+}
+*/
+
+/*
+.slidecontainer{
+	width:100%;
+}
+
+.slider{
+	width:100%;
+	height:30vw;
+	
+	background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+  
+  cursor: pointer;
+}
+
+.slider::-webkit-slider-thumb {
+	height:20vw;
+}
+
+
+.slider:hover {
+  opacity: 1;
+}
+*/
+
+.slidecontainer {
+    width: 100%;
+}
+
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 3vw;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 3vw;
+    height: 3vw;
+    background: #04AA6D;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    background: #04AA6D;
+    cursor: pointer;
+}
+
+/*
+---game.html---
+*/
+
+.leftTitle {
+    font-size: 6vw;
+}
+
+.rightTitle {
+    font-size: 6vw;
+}
+
+.onePuzzle-container {
+    width: 100%;
+    height: 100%;
+    margin-bottom: 3vw;
+    break-inside: avoid-column;
+    display: flex;
+    flex-direction: column;
+    /* flex-direction: column-reverse; */
+    break-after: column;
+}
+
+.onePuzzle-container div {
+    display: flex;
+}
+
+.old
+/*just shrinking my old guessRows*/
+
+    {
+    width: 80%;
+}
+
+.old .tile
+/*just shrinking my old guessRows*/
+
+    {
+    height: 80%;
+    font-size: 2vw;
+}
+
+.hide .old {
+    display: none !important;
+}
+
+/*I can either hide the future GuessRows, or the past ones via a switch, but not both */
+
+/*I'm hiding my old guessRows, but I was going back and Showing the rows which contain a yellow letter - which turns out to be almost all of them, so it's kind of pointless to hide the rest
+.hide .show 
+{
+	display: flex !important;
+}*/
+
+/*.onePuzzle-container .tile { */
+
+.tile {
+    width: 8vw;
+    aspect-ratio: 1/1;
+    font-size: 6vw;
+    border: .25vw solid#3a3a3c;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: .5vw;
+}
+
+.tile.test {
+    font-size: 1.5vw
+}
+
+.previewButtonContainer {
+    width: 100% margin-bottom: 3vw;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    break-inside: avoid-column;
+}
+
+/*here are the 64 preview buttons*/
+
+.previewButtonContainer button {
+    display: flex;
+    flex-direction: row;
+}
+
+.previewButtonContainer button div
+/*each of the preview buttons contains 5 other divs */
+
+    {
+    width: 1.5vw;
+    height: 1.5vw;
+    font-family: Arial;
+    font-weight: bold;
+    font-size: 1.5vw;
+    margin: .1vw;
+    background-color: #3a3a3c
+}
+
+.dark .previewButtonContainer button div {
+    color: #d3d3d3;
+}
+
+/*
+ON-SCREEN KEYBOARD
+I couldn't figure out how to enter a linebreak inside this container, so instead I faked it with margins and witchcraft,
+ which means that if I change the size of any of the elements, the formatting might break - which I dislike, but here we are
+*/
+
+.key-container {
+    text-align: center;
+    height: 30vw;
+    position: relative;
+    /*CSS is annoying. The child elements which have Absolute live within the nearest explicitly positioned parent element - which is to say, the outer box needs position:relative, and the inner boxes need position: absolute */
+}
+
+.key-container button {
+    width: 4vw;
+    height: 4vw;
+    font-size: 2vw;
+    border-radius: .4vw;
+    border-color: black;
+    margin: .4vw;
+}
+
+.key-container button:nth-child(21) {
+    width: 10vw;
+}
+
+/* << */
+
+.key-container button:nth-child(30) {
+    /* enter */
+    width: 10vw;
+}
+
+/*
+here's a little flipping animation when the player submits a guess
+*/
+
+.flip {
+    animation: 1s linear flipping;
+}
+
+@keyframes flipping {
+    0% {
+        transform: rotateX(0deg);
+    }
+    50% {
+        transform: rotateX(90deg);
+    }
+    100% {
+        transform: rotateX(0deg);
+    }
+}
+
+/*
+#summary {
+	font-size: 40vw;
+}
+*/
+
+/* remaining guesses */
+
+.heartsDiv {
+    font-size: 6vw;
+}
+
+/*navigation icons */
+
+.svg {
+    height: 1em;
+    width: 1em;
+}
+
+/* I'm just copying a whole bunch of styling from Fusele. Hopefully it helps. */
+
+#stats,
+#settings,
+#info {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    position: absolute;
+    color: white;
+    width: 90%;
+    height: 90%;
+    margin: 4w;
+    backdrop-filter: blur(0.875px) brightness(65%);
+    display: none;
+    -webkit-animation: fadein 0.25s;
+    -moz-animation: fadein 0.25s;
+    -ms-animation: fadein 0.25s;
+    -o-animation: fadein 0.25s;
+    animation: fadein 0.25s;
+}
+
+#stats {
+    z-index: 25;
+}
+
+#settings {
+    z-index: 27;
+}
+
+#info {
+    z-index: 26;
+}
+
+#statspanel,
+#settingspanel,
+#infopanel {
+    border: 2px solid #1A1A1A;
+    border-radius: 25px;
+    background: linear-gradient(90deg, hsl(240deg 9% 6%) 0%, hsl(225deg 11% 7%) 100%);
+    margin: auto;
+    margin-top: 40px;
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* Internet Explorer 10+ */
+}
+
+.instructionsholder {
+    position: relative;
+    top: 2vw;
+    margin-bottom: 4vw;
+    text-align: left;
+    justify-content: left;
+    display: flex;
+    flex-direction: column;
+}
+
+.instructions {
+    margin-left: 12.5px;
+    margin-right: 12.5px;
+    margin-bottom: 5px;
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    width: fit-content;
+    text-align: left;
+}
+
+#statspanel::-webkit-scrollbar,
+#settingspanel::-webkit-scrollbar,
+#infopanel::-webkit-scrollbar {
+    /* WebKit */
+    width: 0;
+    height: 0;
+}
+
+#statistics,
+#Kstatistics {
+    display: flex;
+    position: relative;
+    margin: auto;
+    top: 18;
+}
+
+#gamesplayed,
+#gameswon,
+#avgwins,
+#avgrows,
+#Kgamesplayed,
+#Kgameswon,
+#Kavgwins,
+#Kavgrows {
+    width: 67px;
+    margin: auto;
+    font-size: 13px;
+    font-weight: normal;
+}
+
+.GP,
+.GW,
+.AW,
+.AR,
+.KGP,
+.KGW,
+.KAW,
+.KAR {
+    margin: auto;
+    text-align: center;
+    font-size: 30px !important;
+    font-weight: 550 !important;
+}
+
+#hidestatsbtn,
+#hidesettingsbtn,
+#hideinfobtn {
+    position: absolute;
+    top: 5.5px;
+    right: 3px;
+}
+
+#blindstatsbtn {
+    position: absolute;
+    top: 9px;
+    left: 8px;
+    transform: scale(0.8, 0.8);
+    margin-top: -2px;
+    cursor: pointer;
+}
+
+#distribution,
+#Kdistribution {
+    width: 390px;
+    margin: 0 15px 0 15px;
+    position: absolute;
+    font-family: Arial, Helvetica, sans-serif;
+    top: 145px;
+}
+
+.DRow {
+    display: flex;
+    margin-top: 3px;
+}
+
+.DNum {
+    width: 10px;
+    height: 17px;
+    text-align: center;
+    padding-top: 3px;
+    font-weight: 550;
+    font-size: 22px;
+}
+
+.DRect {
+    background: #42464d;
+    width: 15px;
+    height: 26px;
+    margin-left: 11.75px;
+    text-align: right;
+    font-size: 22px;
+    padding-top: 2.5px;
+    padding-right: 3.25px;
+}
+
+#countdownholder {
+    display: flex;
+    font-variant: small-caps;
+    font-size: 27px;
+    margin: auto;
+    position: relative;
+    top: 458px;
+    pointer-events: none;
+    width: fit-content;
+}
+
+#countdown {
+    padding-top: 3.5px;
+    font-size: 23px;
+    letter-spacing: 2px;
+    margin: auto;
+    position: relative;
+    pointer-events: none;
+    width: fit-content;
+    line-height: 0px;
+}
+
+#statsbuttons {
+    position: relative;
+    top: 462.25px;
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+}
+
+#playagain,
+#sharegame {
+    font-weight: 600;
+    font-size: 26px;
+    border-radius: 7px;
+    height: 50px;
+    margin: auto;
+    cursor: pointer;
+    position: relative;
+}
+
+#playagain {
+    width: 217.5px;
+    background: #6AAA64;
+}
+
+#sharegame {
+    width: 150px;
+    background: #42464D;
+}
+
+#paholder {
+    position: absolute;
+    top: 12px;
+    left: 11.75px;
+}
+
+#sgholder {
+    position: absolute;
+    top: 12px;
+    left: 11.75px;
+}
+
+#patext,
+#sgtext {
+    width: fit-content;
+    height: fit-content;
+    margin: auto;
+}
+
+#pasvg,
+#sgsvg {
+    position: absolute;
+    margin: auto;
+    margin-top: 0px;
+}
+
+#pasvg {
+    top: -6.5px;
+}
+
+#sgsvg {
+    top: -4px;
+}
+
+#sgsvg path {
+    transform: scaleY(0.903614);
+}
+
+#sidebuttons {
+    width: 420px;
+}
+
+#leftbuttons,
+#rightbuttons {
+    width: fit-content;
+    display: flex;
+    flex-wrap: nowrap;
+    position: absolute;
+    cursor: pointer;
+    margin: auto;
+    z-index: 10;
+}
+
+#leftbuttons {
+    left: -1px;
+    top: 0px;
+}
+
+#rightbuttons {
+    right: -4px;
+    top: -0.5px;
+}
+
+#blindbtn {
+    margin-right: 3px;
+}
+
+#statsbtn {
+    margin-top: 0.5px;
+    transform: scaleY(1.055);
+}
+
+.layout {
+    z-index: 1;
+    position: absolute;
+}

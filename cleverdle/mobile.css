@@ -1,0 +1,139 @@
+/*These are some extra rules that only apply to mobile devices; my main css is in style.css */
+
+.layout {
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.column {}
+
+a.button {
+    font-size: 4.5vw;
+}
+
+.navigation {
+    position: fixed;
+    top: 0vw;
+    right: 0vw;
+    font-size: 5vw;
+}
+
+.tile {
+    width: 100%;
+    height: 100%;
+    font-size: 16vw;
+}
+
+.tile.test
+/*on the menu page, where you can preview the colors*/
+
+    {
+    font-size: 4vw;
+}
+
+/*here are the 64 preview buttons*/
+
+.previewButtonContainer button {
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+}
+
+.previewButtonContainer button div
+/*each of the preview buttons contains 5 other divs */
+
+    {
+    width: 2.5vw;
+    height: 2.5vw;
+    font-family: Arial;
+    font-weight: bold;
+    font-size: 2.5vw;
+    margin: .1vw;
+    background-color: #3a3a3c
+}
+
+/*on-screen qwerty keyboard*/
+
+.key-container {
+    /*
+	border-style: solid;
+	border-color: red;
+	*/
+}
+
+.key-container.qwerty button {
+    width: 8.5vw;
+    height: 9vw;
+    font-size: 3vw;
+    border-radius: .4vw;
+    border-color: black;
+    margin: .4vw;
+}
+
+.key-container.qwerty button:nth-child(21) {
+    width: 17vw;
+}
+
+/* << */
+
+.key-container.qwerty button:nth-child(30) {
+    /* enter */
+    width: 14vw;
+}
+
+/*on-screen placeholder keyboard*/
+
+.key-container.placeholder button {
+    width: 8.5vw;
+    height: 9vw;
+    font-size: 3vw;
+    border-radius: .4vw;
+    border-color: black;
+    margin: .4vw;
+}
+
+.key-container.placeholder button:nth-child(21) {
+    width: 17vw;
+}
+
+/* << */
+
+.key-container.placeholder button:nth-child(30) {
+    /* enter */
+    width: 14vw;
+}
+
+/* guessRows */
+
+.onePuzzle-container {
+    flex-direction: column-reverse;
+    font-size: 12.0vw !important;
+}
+
+.onePuzzle-container .old .tile {
+    font-size: 10vw;
+}
+
+/*when you guess correctly */
+
+.bonus {
+    border-style: solid;
+    border-radius: 1.4vw;
+    border-color: red;
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    background: blue;
+}
+
+/*shrinking the font size on the Near summary tiles */
+
+#summary .tile.near {
+    font-size: 8vw;
+    font-style: italic;
+}

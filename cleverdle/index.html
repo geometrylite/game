@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+
+<!--
+<a target="_blank" href="https://icons8.com/icon/11683/support">Support</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+-->
+
+<html lang="en" dir="ltr">
+
+<head>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cleverdle by AdmiralSpunky</title>
+    <link rel="shortcut icon" type="image/jpg" href="res/icons8-three-leaf-clover-64.png" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" media="only screen and (max-width: 400px)" href="mobile.css" />
+    <link rel="stylesheet" media="only screen and (min-width: 400px)" href="full.css" />
+    <script src="alert.js">
+    </script> 
+
+</head>
+
+<body onload="f()">
+    <script>
+        function f() {
+            if (localStorage.getItem('dark') != "false") {
+                document.body.classList.add('dark')
+            }
+
+            if (localStorage.getItem('altColor') == "true") {
+                document.body.classList.add('altColor')
+            }
+        }
+    </script>
+
+
+    <div class="layout">
+
+        <div class="column">
+
+            <div class="leftTitle">Welcome</div>
+            <div class="rightTitle">Wordle 0</div>
+
+            <div class="previewButtonContainer"></div>
+
+            <div class="key-container"></div>
+
+            <div class="navigation" name="navigation">
+                <a href="settings.html" target="popup" onclick="window.open('settings.html','popup','width=600,height=600');return false;">
+					<img src="res/wrench.svg" class="svg" title="settings"></a> |
+                <img src="res/Icon-round-Question_mark.svg" class="svg" title="tutorial" onClick="toggleInfo();"></img> |
+                <img src="res/white-flag.svg" class="svg" title="new game" width="20vw" height="20vw" onClick="debug('Concede button is clicked'); 
+								if( confirm('Do you want to start a new game? This will not affect your stats.') )
+								{										
+									localStorage.removeItem('wordles'); 
+									localStorage.removeItem('guessRows'); 
+									localStorage.removeItem('guessesRemaining');
+									localStorage.removeItem('currentWordle');
+									guessesRemaining = 0; 
+									gameOver();   } "> </img>
+
+            </div>
+        </div>
+
+        <div class="column">
+
+            <div id="summary" class="row" style="opacity: .5"></div>
+            <br>
+            <div class="heartsDiv">guesses remaining: </div>
+            <div class="onePuzzle-container"></div>
+            <!--<div class="checkbox">	<label><input type="checkbox" id="hideG">hide previous guesses</label>	</div>
+			
+			<script>
+				let checkbox = document.getElementById("hideG");
+
+				checkbox.addEventListener( 'change', function() {
+					localStorage.setItem('hide',this.checked);
+					if(this.checked) {
+						document.body.classList.add('hide')
+					} else {
+						document.body.classList.remove('hide')     
+					}
+				});
+			</script>
+-->
+        </div>
+    </div>
+
+    <!--  Bonus Guess popup   -->
+    <div class="bonus" style="display:none;">
+        Bonus guess!
+    </div>
+
+
+    <!-- 
+	This is the New Alert Box div. I am using this, instead of JavaScript's built-in alert, so I can customize the appearance of the box, and so I can add non-text elements.
+	The id value must be identical to the value for the variable NewAlertDivIDvalue in the JavaScript.
+	The first six style declarations are required.
+	The rest of the style declarations visually design the new alert box and may be omitted, replaced, or more declarations added.
+	-->
+    <div id="new-alert-box-div" style="
+		   display: none;
+		   position: absolute;
+		   z-index: 99;
+		   left: 0;
+		   top: 0;
+		   box-sizing: border-box;
+		   background-color: #fff;
+		   color: #000;
+		   font-size: 1em;
+		   border: 1px solid #000;
+		   border-radius: 10px;
+		   padding: 1em;
+		   margin: 2em 2em 1em 1em;
+		   max-width: 500px;
+		   box-shadow: 0px 0px 9px 3px #333;
+		">
+
+        <!--
+		This is a "dismiss" image within the new alert box div that can be tapped to close/dismiss the new alert box.
+		Replace the image with your own image or your own text.
+		-->
+        <div style="position: absolute; right: -10px; top: -10px;">
+            <a href="javascript:RemoveNewAlert()">
+		<img src="closeboxX20.png" style="height: 20px; width: 20px; border: none; outline: none;" alt="X">
+		</a>
+        </div>
+
+        <!--
+		This is the div within the new alert box div that will contain the alert message text.
+		The id value must be identical to the value for the variable NewAlertTextIDvalue in the JavaScript.
+		-->
+        <div id="new-alert-box-text" style="padding-bottom: 2vw;"></div>
+
+        <!--
+		I'm adding a New Game button to the alert box, because that seems like a good idea
+		-->
+
+
+        <a href="index.html" id='next-button' style='display:none;' onClick="
+			localStorage.removeItem('wordles'); 
+			localStorage.removeItem('guessRows'); 
+			localStorage.removeItem('guessesRemaining');
+			localStorage.removeItem('currentWordle'); " class="button">next</a>
+
+        <br><br>
+        <!--
+		I'm putting a little donation button at the bottom of each of my alerts
+		-->
+        <div style="position: absolute; bottom: 0vw; left: 50%; display:none;" id="donation-button">
+            <form action="https://www.paypal.com/donate" method="post" target="_top">
+                <input type="hidden" name="business" value="SQDSDXT36ADAW" />
+                <input type="hidden" name="no_recurring" value="0" />
+                <input type="hidden" name="item_name" value="Hi, I'm AdmiralSpunky. I'm not a developer, but with your support, I can keep working on Cleverdle, and other games." />
+                <input type="hidden" name="currency_code" value="USD" />
+                <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+                <!-- <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" /> -->
+            </form>
+        </div>
+    </div>
+    <!-- id="new-alert-box-div" -->
+    <!-- End of New Alert Box div. -->
+
+
+    <!-- info popup -->
+    <div id="info" style='display:none;'>
+        <div id="infopanel">
+            <svg id="hideinfobtn" onclick="toggleInfo();" xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 40 40">
+				<path fill="white" d="M 28.5 9.615 L 26.385 7.5 L 18 15.885 L 9.615 7.5 L 7.5 9.615 L 15.885 18 L 7.5 26.385 L 9.615 28.5 L 18 20.115 L 26.385 28.5 L 28.5 26.385 L 20.115 18 z"></path>
+			</svg>
+            <h1 class="smallcaps" style="top:12.5px;">answers to all of your questions</h1>
+            <div class="instructionsholder">
+                <span class="instructions">	You've played Wordle; now you're playing 16 Wordles at once. Each time you guess a word, your guess is applied to each of the puzzles, and each one gives you its own feedback. You start with only 6 lives, but you earn an extra one every time you solve a puzzle. 
+				<br><br>
+				You can use enter/backspace, or the arrow keys on a keyboard, to navigate around the puzzle display. When you finish the game, the stats report that pops up is automatically copied to your clipboard. The summary row doesn't do anything but collate the feedback that you've received from your previous guesses. You could find that same information yourself, by scrolling down and looking through your old guesses. But you don't have to do that. You're welcome.
+				<br><br>
+				Do you have any other questions? Have you played Zaratustra's <a href="https://zaratustra.itch.io/dordle">Dordle</a>? If you haven't, please do. If you have, and you still have questions about Cleverdle, try admiralspunky@gmail.com
+				<br><br>
+				I didn't know where else to put this, so here's a link to my <a href="changelog.txt">changelog!</a>
+			</div>
+
+		</div>
+	</div>
+
+
+	<!--I'm just loading my wordlists from other files; the actual program is in script.js-->
+	<script src="targetWords.js"> </script>
+	<script src="validGuesses.js"> </script>
+	<script src="script.js"> </script>
+	
+
+	
+	
+  </body>
+</html>
