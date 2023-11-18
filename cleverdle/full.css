@@ -1,0 +1,147 @@
+/*These are some extra rules that only apply to desktops or large devices; my main css is in style.css */
+
+.layout {
+    display: flex;
+    flex-direction: row;
+}
+
+.column {
+    width: 50%;
+    height: 100%;
+}
+
+a.button {
+    width: 45%;
+    font-size: 2vmin;
+    height: 4vmin;
+}
+
+.navigation {
+    position: fixed;
+    bottom: 0vmin;
+    left: 0vmin;
+    font-size: 5vmin;
+}
+
+.tile {
+    width: 8vmin;
+    height: 8vmin;
+    font-size: 5vmin;
+}
+
+.tile.test
+/*on the menu page, where you can preview the colors*/
+
+    {
+    font-size: 2vmin;
+}
+
+/*here are the 64 preview buttons*/
+
+.previewButtonContainer button {
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+}
+
+.previewButtonContainer button div
+/*each of the preview buttons contains 5 other divs */
+
+    {
+    width: 5vmin;
+    height: 5vmin;
+    font-family: Arial;
+    font-weight: bold;
+    font-size: 4vmin;
+    margin: .1vmin;
+    background-color: #3a3a3c
+}
+
+/*on-screen qwerty keyboard*/
+
+.key-container.qwerty button {
+    width: 4vmin;
+    height: 4vmin;
+    font-size: 3vmin;
+    border-radius: .4vmin;
+    border-color: black;
+    margin: .4vmin;
+}
+
+.key-container.qwerty button:nth-child(21) {
+    width: 17vmin;
+}
+
+/* << */
+
+.key-container.qwerty button:nth-child(30) {
+    /* enter */
+    width: 14vmin;
+}
+
+/*on-screen placeholder keyboard*/
+
+.key-container.placeholder button {
+    width: 4vmin;
+    height: 4vmin;
+    font-size: 2vmin;
+    border-radius: .4vmin;
+    border-color: black;
+    margin: .4vmin;
+}
+
+.key-container.placeholder button:nth-child(1) {
+    height: 8vmin;
+}
+
+/* << */
+
+.key-container.placeholder button:nth-child(9) {
+    height: 8vmin;
+}
+
+/* enter */
+
+/* guessRows */
+
+.onePuzzle-container {
+    flex-direction: column-reverse;
+    font-size: 5vmin;
+}
+
+.old
+/*previous guesses that don't need to take up the whole page, but still need to be visible*/
+
+    {
+    width: 5vmin;
+    height: 5vmin;
+}
+
+.onePuzzle-container .old .tile {
+    font-size: 2vmin;
+}
+
+/* remaining guesses */
+
+.heartsDiv {
+    font-size: 2vmin;
+}
+
+/*when you guess correctly */
+
+.bonus {
+    border-style: solid;
+    border-radius: 1.4vw;
+    border-color: red;
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    background: blue;
+}
+
+/*shrinking the font size on the Near summary tiles */
+
+#summary .tile.near {
+    font-size: 2vw;
+    font-style: italic;
+}
